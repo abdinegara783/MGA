@@ -147,9 +147,19 @@ document.addEventListener("DOMContentLoaded", function () {
   var metricUsdEl = document.getElementById("metricUsd");
   var totalUsdLineEl = document.getElementById("totalUsdLine");
   var totalIdrEl = document.getElementById("totalIdr");
+  var dpNowEl = document.getElementById("dpNow");
+  var dpLaterEl = document.getElementById("dpLater");
+  var payCards = document.querySelectorAll(".pay-card");
+  var payPanelBank = document.getElementById("payPanelBank");
+  var payPanelVa = document.getElementById("payPanelVa");
+  var payPanelQris = document.getElementById("payPanelQris");
+  var payPanelDp = document.getElementById("payPanelDp");
+  var copyButtons = document.querySelectorAll(".copy-btn");
   var RATE_FALLBACK = 16400;
   var PRICE = 135;
   var rate = RATE_FALLBACK;
+  var lastTotalUsdNum = 0;
+  var lastTotalIdrNum = 0;
   var updateTime = function () {
     var d = new Date();
     var hh = String(d.getHours()).padStart(2, "0");
@@ -200,7 +210,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (metricPaxEl) metricPaxEl.textContent = pax.toLocaleString("id-ID");
     if (metricUsdEl) metricUsdEl.textContent = "$" + totalUsd.toLocaleString("id-ID");
     if (totalUsdLineEl) totalUsdLineEl.textContent = "$" + totalUsd.toLocaleString("id-ID") + " × Rp " + rate.toLocaleString("id-ID");
-    if (totalIdrEl) totalIdrEl.textContent = "Rp " + (totalUsd * rate).toLocaleString("id-ID");
+    lastTotalUsdNum = totalUsd;
+    lastTotalIdrNum = totalUsd * rate;
+    if (totalIdrEl) totalIdrEl.textContent = "Rp " + lastTotalIdrNum.toLocaleString("id-ID");
+    if (dpNowEl && dpLaterEl) {
+      var now = Math.round(lastTotalIdrNum * 0.5);
+      var later = lastTotalIdrNum - now;
+      dpNowEl.textContent = "Rp " + now.toLocaleString("id-ID");
+      dpLaterEl.textContent = "Rp " + later.toLocaleString("id-ID");
+    }
   };
   if (paxMinusEl && paxPlusEl && paxCountEl) {
     paxMinusEl.addEventListener("click", function () {
@@ -223,6 +241,40 @@ document.addEventListener("DOMContentLoaded", function () {
     renderRate();
     updateCalc();
     fetchRate();
+  }
+  var showPanel = function (method) {
+    [payPanelBank, payPanelVa, payPanelQris, payPanelDp].forEach(function (p) {
+      if (!p) return;
+      p.classList.remove("show");
+    });
+    if (method === "bank" && payPanelBank) payPanelBank.classList.add("show");
+    if (method === "va" && payPanelVa) payPanelVa.classList.add("show");
+    if (method === "qris" && payPanelQris) payPanelQris.classList.add("show");
+    if (method === "dp" && payPanelDp) payPanelDp.classList.add("show");
+  };
+  if (payCards.length) {
+    payCards.forEach(function (card) {
+      card.addEventListener("click", function () {
+        payCards.forEach(function (c) { c.classList.remove("active"); });
+        card.classList.add("active");
+        var method = card.getAttribute("data-method");
+        showPanel(method);
+      });
+    });
+  }
+  if (copyButtons.length) {
+    copyButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var text = btn.getAttribute("data-copy") || "";
+        if (text) {
+          navigator.clipboard.writeText(text).then(function () {
+            var original = btn.textContent;
+            btn.textContent = "✓ Disalin!";
+            setTimeout(function () { btn.textContent = original; }, 1500);
+          });
+        }
+      });
+    });
   }
   var updateBadge2 = function (pax) {
     if (paxBadgeEl2) {

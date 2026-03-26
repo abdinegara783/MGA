@@ -538,6 +538,91 @@ html {
   font-size: 12px;
   color: #cbd3e6;
 }
+.pay-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+@media (max-width: 840px) {
+  .pay-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .pay-grid { grid-template-columns: 1fr; }
+}
+.pay-card {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+.pay-card:hover {
+  transform: translateY(-2px);
+}
+.pay-card.active {
+  border: 2px solid var(--gold);
+  background: rgba(245, 239, 224, 0.12);
+}
+.pay-icon {
+  color: var(--gold);
+}
+.pay-name {
+  font-weight: 700;
+}
+.pay-panels {
+  position: relative;
+  min-height: 120px;
+}
+.pay-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+.pay-panel.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.accounts {
+  display: grid;
+  gap: 10px;
+}
+.account-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+}
+.account-label {
+  font-weight: 700;
+  color: var(--gold);
+}
+.account-number {
+  color: #ffffff;
+}
+.account-name {
+  color: #cbd3e6;
+}
+.pay-note, .pay-info {
+  margin-top: 10px;
+  color: #cbd3e6;
+}
+.dp-lines {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.dp-row span {
+  font-weight: 800;
+  color: var(--gold);
+}
 .calc-head {
   display: flex;
   align-items: center;
