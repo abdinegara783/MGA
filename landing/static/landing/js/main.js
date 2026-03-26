@@ -85,4 +85,26 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+  var popup = document.querySelector(".popup-overlay");
+  var popupClose = document.querySelector(".popup-close");
+  var popupClaim = document.querySelector(".popup-claim");
+  if (popup) {
+    var shown = localStorage.getItem("mga_popup_shown");
+    if (!shown) {
+      setTimeout(function () {
+        popup.classList.add("open");
+        localStorage.setItem("mga_popup_shown", "1");
+      }, 5000);
+    }
+    if (popupClose) {
+      popupClose.addEventListener("click", function () {
+        popup.classList.remove("open");
+      });
+    }
+    if (popupClaim) {
+      popupClaim.addEventListener("click", function () {
+        popup.classList.remove("open");
+      });
+    }
+  }
 });
