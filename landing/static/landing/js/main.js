@@ -57,4 +57,32 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".count[data-target]").forEach(function (num) {
     statObserver.observe(num);
   });
+  var faqHeaders = document.querySelectorAll(".faq-header");
+  faqHeaders.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var item = btn.closest(".faq-item");
+      var body = item.querySelector(".faq-body");
+      var icon = btn.querySelector(".icon");
+      var expanded = btn.getAttribute("aria-expanded") === "true";
+      if (expanded) {
+        btn.setAttribute("aria-expanded", "false");
+        item.classList.remove("open");
+        body.style.height = body.scrollHeight + "px";
+        requestAnimationFrame(function () {
+          body.style.height = "0px";
+        });
+        icon.textContent = "+";
+      } else {
+        btn.setAttribute("aria-expanded", "true");
+        item.classList.add("open");
+        body.style.height = "auto";
+        var full = body.scrollHeight;
+        body.style.height = "0px";
+        requestAnimationFrame(function () {
+          body.style.height = full + "px";
+        });
+        icon.textContent = "−";
+      }
+    });
+  });
 });

@@ -289,6 +289,126 @@ body.site-body {
   border-radius: 999px;
   box-shadow: 0 8px 24px rgba(201,168,76,0.35);
 }
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 18px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 32px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(10,22,40,0.12);
+}
+.step {
+  position: relative;
+  padding: 18px 18px 18px 72px;
+}
+.step h3 {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  color: var(--navy);
+}
+.step p {
+  margin: 0;
+  color: #2a3344;
+  line-height: 1.6;
+}
+.num {
+  position: absolute;
+  left: 16px;
+  top: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #0a0a0a;
+  background: linear-gradient(180deg, var(--gold), #e7cf87);
+  box-shadow: 0 10px 30px rgba(201,168,76,0.35);
+}
+@media (min-width: 1024px) {
+  .timeline {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .timeline::before {
+    display: none;
+  }
+  .step {
+    padding: 18px;
+    text-align: center;
+  }
+  .num {
+    position: static;
+    margin: 0 auto 8px auto;
+  }
+  .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -24px;
+    width: 48px;
+    height: 2px;
+    background: rgba(10,22,40,0.12);
+  }
+}
+.faq-accordion {
+  display: grid;
+  gap: 12px;
+}
+.faq-item {
+  border: 1px solid rgba(10,22,40,0.12);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 6px 22px rgba(10,22,40,0.06);
+  overflow: hidden;
+}
+.faq-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--navy);
+  font-weight: 700;
+}
+.faq-header .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(10,22,40,0.2);
+  color: var(--navy);
+  font-weight: 800;
+  transition: transform 200ms ease, background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.faq-item.open .faq-header .icon {
+  background: var(--gold);
+  color: #0a0a0a;
+  border-color: var(--gold);
+  transform: rotate(180deg);
+}
+.faq-body {
+  height: 0;
+  overflow: hidden;
+  transition: height 320ms ease, opacity 320ms ease;
+  opacity: 0.96;
+}
+.faq-content {
+  padding: 0 16px 16px 16px;
+  color: #1f2a3b;
+  line-height: 1.6;
+}
 .adv-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
