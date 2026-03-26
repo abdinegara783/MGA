@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var loading = document.getElementById("loading");
+  setTimeout(function () {
+    if (loading) loading.classList.add("hidden");
+  }, 1500);
   var nav = document.getElementById("navbar");
   var onScroll = function () {
     if (window.scrollY > 8) {
@@ -25,6 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }, { threshold: 0.12 });
   document.querySelectorAll(".reveal, .reveal-left").forEach(function (el) {
+    observer.observe(el);
+  });
+  document.querySelectorAll(".section .container").forEach(function (el) {
+    el.classList.add("reveal");
     observer.observe(el);
   });
   var statObserver = new IntersectionObserver(function (entries, obs) {
@@ -57,6 +65,23 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".count[data-target]").forEach(function (num) {
     statObserver.observe(num);
   });
+  var sections = document.querySelectorAll("section[id]");
+  var linkMap = {};
+  document.querySelectorAll(".nav-links a[href^='#']").forEach(function (a) {
+    linkMap[a.getAttribute("href").replace('#','')] = a;
+  });
+  var activeObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var id = entry.target.id;
+      var link = linkMap[id];
+      if (!link) return;
+      if (entry.isIntersecting) {
+        document.querySelectorAll(".nav-links a").forEach(function (l) { l.classList.remove("active"); });
+        link.classList.add("active");
+      }
+    });
+  }, { rootMargin: "-40% 0px -40% 0px", threshold: 0.1 });
+  sections.forEach(function (sec) { activeObserver.observe(sec); });
   var faqHeaders = document.querySelectorAll(".faq-header");
   faqHeaders.forEach(function (btn) {
     btn.addEventListener("click", function () {
