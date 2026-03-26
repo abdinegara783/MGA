@@ -856,6 +856,100 @@ html {
   padding: 14px 22px;
   font-size: 16px;
 }
+.btn-full {
+  width: 100%;
+}
+.btn-primary {
+  background-color: var(--gold);
+  color: #0A1628;
+}
+.btn-primary:hover {
+  background-color: #b9973f;
+}
+.btn-spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(10,22,40,0.15);
+  border-top-color: #0A1628;
+  border-radius: 50%;
+  margin-left: 8px;
+  animation: spin 900ms linear infinite;
+}
+.btn.loading .btn-spinner {
+  display: inline-block;
+}
+.btn.loading .btn-label {
+  opacity: 0.8;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.btn.shake {
+  animation: shake 400ms ease;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.18);
+}
+.success-box {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #e6f9e9;
+  border: 1px solid #3ccf63;
+  color: #0a1615;
+  display: none;
+  transform: scale(0.96);
+  opacity: 0;
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+.success-box.show {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+.success-title {
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #15803d;
+}
+.success-items {
+  display: grid;
+  gap: 6px;
+}
+.s-label {
+  font-weight: 700;
+}
+.success-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+.confetti-wrap {
+  position: relative;
+  height: 0;
+}
+.confetti-piece {
+  position: fixed;
+  top: -12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confetti-fall 2800ms ease-in forwards;
+  z-index: 1500;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+}
 .contact-info .info-item {
   display: grid;
   grid-template-columns: 28px 1fr;

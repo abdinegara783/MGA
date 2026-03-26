@@ -362,4 +362,172 @@ document.addEventListener("DOMContentLoaded", function () {
   bindFile(filePassport, namePassport);
   bindFile(fileFoto, nameFoto);
   bindFile(fileKtp, nameKtp);
+  var submitBtn = document.getElementById("submitOrder");
+  var successBox = document.getElementById("successBox");
+  var sNama = document.getElementById("sNama");
+  var sVisaPax = document.getElementById("sVisaPax");
+  var sTotal = document.getElementById("sTotal");
+  var sMethod = document.getElementById("sMethod");
+  var sWa = document.getElementById("sWa");
+  var sRef = document.getElementById("sRef");
+  var orderAgain = document.getElementById("orderAgain");
+  var orderChat = document.getElementById("orderChat");
+  var confettiWrap = document.getElementById("confetti");
+  var payError = document.getElementById("payError");
+  var getActiveMethod = function () {
+    var active = document.querySelector(".pay-card.active");
+    return active ? active.getAttribute("data-method") : null;
+  };
+  var methodLabel = function (m) {
+    if (m === "bank") return "Transfer Bank";
+    if (m === "va") return "Virtual Account";
+    if (m === "qris") return "QRIS";
+    if (m === "dp") return "DP 50% — Cicilan";
+    return "-";
+  };
+  var spawnConfetti = function () {
+    if (!confettiWrap) return;
+    var colors = ["#C9A84C", "#F5EFE0", "#ffffff"];
+    for (var i = 0; i < 30; i++) {
+      var piece = document.createElement("span");
+      piece.className = "confetti-piece";
+      var left = Math.floor(Math.random() * 100);
+      piece.style.left = left + "vw";
+      piece.style.background = colors[i % colors.length];
+      piece.style.animationDelay = (Math.random() * 0.6) + "s";
+      document.body.appendChild(piece);
+      setTimeout(function (p) { if (p && p.parentNode) p.parentNode.removeChild(p); }, 3200, piece);
+    }
+  };
+  var scrollToEl = function (el) {
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+  var resetForm = function () {
+    var fields = ["nama_pemesan", "wa_pemesan", "email_pemesan", "tgl_berangkat", "jenis_visa", "catatan"];
+    fields.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) {
+        if (el.tagName === "SELECT") el.selectedIndex = 0;
+        else el.value = "";
+        el.removeAttribute("aria-invalid");
+        var err = el.parentElement && el.parentElement.querySelector(".error-message");
+        if (err) err.textContent = "";
+      }
+    });
+    if (payError) payError.textContent = "";
+    var defaultCard = document.querySelector('.pay-card[data-method="bank"]');
+    if (defaultCard) {
+      document.querySelectorAll(".pay-card").forEach(function (c) { c.classList.remove("active"); });
+      defaultCard.classList.add("active");
+      showPanel("bank");
+    }
+    if (filePassport) filePassport.value = "";
+    if (fileFoto) fileFoto.value = "";
+    if (fileKtp) fileKtp.value = "";
+    if (namePassport) namePassport.textContent = "";
+    if (nameFoto) nameFoto.textContent = "";
+    if (nameKtp) nameKtp.textContent = "";
+    if (paxCountEl) {
+      paxCountEl.textContent = "35";
+      updateCalc();
+    }
+    if (paxCountEl2) paxCountEl2.textContent = "35";
+    if (paxBadgeEl) paxBadgeEl.textContent = "Grup";
+    if (paxBadgeEl2) paxBadgeEl2.textContent = "Grup";
+    if (successBox) {
+      successBox.classList.remove("show");
+      successBox.style.display = "none";
+    }
+  };
+  var validateBeforeSubmit = function () {
+    var firstErrorEl = null;
+    var setErr = function (id, valid, msg) {
+      var el = document.getElementById(id);
+      var err = el && el.parentElement ? el.parentElement.querySelector(".error-message") : null;
+      if (!el) return;
+      if (!valid) {
+        el.setAttribute("aria-invalid", "true");
+        if (err) err.textContent = msg;
+        if (!firstErrorEl) firstErrorEl = el;
+      } else {
+        el.removeAttribute("aria-invalid");
+        if (err) err.textContent = "";
+      }
+    };
+    var nama = document.getElementById("nama_pemesan");
+    var wa = document.getElementById("wa_pemesan");
+    var email = document.getElementById("email_pemesan");
+    var tgl = document.getElementById("tgl_berangkat");
+    var jenis = document.getElementById("jenis_visa");
+    var waVal = wa ? wa.value.trim() : "";
+    var emailVal = email ? email.value.trim() : "";
+    var tglVal = tgl ? tgl.value : "";
+    var today = new Date(); today.setHours(0,0,0,0);
+    var tglDate = tglVal ? new Date(tglVal) : null;
+    setErr("nama_pemesan", !!(nama && nama.value.trim().length), "Wajib diisi");
+    setErr("wa_pemesan", /^08\\d{8,}$/.test(waVal), "Format WA harus diawali 08 dan minimal 10 digit");
+    setErr("email_pemesan", /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(emailVal), "Email tidak valid");
+    setErr("tgl_berangkat", !!(tglDate && tglDate.getTime() >= today.getTime()), "Tanggal tidak boleh masa lalu");
+    setErr("jenis_visa", !!(jenis && jenis.value.trim().length), "Pilih jenis visa");
+    var method = getActiveMethod();
+    if (!method) {
+      if (payError) payError.textContent = "Pilih metode pembayaran";
+      if (!firstErrorEl) firstErrorEl = document.querySelector(".pay-grid");
+    } else {
+      if (payError) payError.textContent = "";
+    }
+    return firstErrorEl;
+  };
+  if (submitBtn) {
+    submitBtn.addEventListener("click", function () {
+      var firstErrorEl = validateBeforeSubmit();
+      if (firstErrorEl) {
+        submitBtn.classList.add("shake");
+        setTimeout(function () { submitBtn.classList.remove("shake"); }, 420);
+        scrollToEl(firstErrorEl);
+        return;
+      }
+      submitBtn.classList.add("loading");
+      var label = submitBtn.querySelector(".btn-label");
+      if (label) label.textContent = "Memproses...";
+      submitBtn.setAttribute("disabled", "true");
+      setTimeout(function () {
+        submitBtn.classList.remove("loading");
+        if (label) label.textContent = "Kirim Pesanan Sekarang →";
+        submitBtn.removeAttribute("disabled");
+        var nama = document.getElementById("nama_pemesan").value.trim();
+        var wa = document.getElementById("wa_pemesan").value.trim();
+        var jenis = document.getElementById("jenis_visa").value.trim();
+        var pax = parseInt((paxCountEl && paxCountEl.textContent) || "1", 10) || 1;
+        var method = methodLabel(getActiveMethod());
+        var refDate = new Date();
+        var y = refDate.getFullYear();
+        var m = String(refDate.getMonth() + 1).padStart(2, "0");
+        var d = String(refDate.getDate()).padStart(2, "0");
+        var rand = Math.floor(1000 + Math.random() * 9000);
+        var ref = "REF-" + y + m + d + "-" + rand;
+        if (sNama) sNama.textContent = nama;
+        if (sVisaPax) sVisaPax.textContent = jenis + " — " + pax.toLocaleString("id-ID") + " pax";
+        if (sTotal) sTotal.textContent = "Rp " + (lastTotalIdrNum || 0).toLocaleString("id-ID");
+        if (sMethod) sMethod.textContent = method;
+        if (sWa) sWa.textContent = wa;
+        if (sRef) sRef.textContent = ref;
+        if (successBox) {
+          successBox.style.display = "block";
+          successBox.classList.add("show");
+          scrollToEl(successBox);
+        }
+        var msg = encodeURIComponent("Halo Al-Safar Travel, saya ingin konfirmasi pesanan dengan nomor referensi " + ref + ".");
+        if (orderChat) orderChat.setAttribute("href", "https://wa.me/6281200000000?text=" + msg);
+        spawnConfetti();
+      }, 1200);
+    });
+  }
+  if (orderAgain) {
+    orderAgain.addEventListener("click", function () {
+      resetForm();
+      scrollToEl(document.querySelector(".visa-header"));
+    });
+  }
 });

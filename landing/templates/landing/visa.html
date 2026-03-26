@@ -97,6 +97,7 @@
           <div class="pay-name">DP 50% — Cicilan</div>
         </div>
       </div>
+      <div id="payError" class="error-message"></div>
       <div class="pay-panels">
         <div id="payPanelBank" class="pay-panel show">
           <div class="accounts">
@@ -235,6 +236,34 @@
           <div class="note">Maks. 2MB per file, format JPG/PNG/PDF</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="card card-dark">
+      <div class="form-actions">
+        <button id="submitOrder" type="button" class="btn btn-primary btn-lg btn-full">
+          <span class="btn-label">Kirim Pesanan Sekarang →</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div id="successBox" class="success-box" style="display:none">
+        <div class="success-title">✓ Pesanan Berhasil Dikirim!</div>
+        <div class="success-items">
+          <div><span class="s-label">Nama Pemesan:</span> <span id="sNama"></span></div>
+          <div><span class="s-label">Jenis Visa & Pax:</span> <span id="sVisaPax"></span></div>
+          <div><span class="s-label">Total Pembayaran:</span> <span id="sTotal"></span></div>
+          <div><span class="s-label">Metode Pembayaran:</span> <span id="sMethod"></span></div>
+          <div><span class="s-label">Kontak:</span> Tim kami akan menghubungi <span id="sWa"></span> dalam 1×24 jam</div>
+          <div><span class="s-label">Nomor Referensi:</span> <span id="sRef"></span></div>
+        </div>
+        <div class="success-actions">
+          <button id="orderAgain" type="button" class="btn btn-secondary btn-xs">Pesan Lagi</button>
+          <a id="orderChat" href="#" target="_blank" rel="noopener" class="btn btn-primary btn-xs">Chat WhatsApp</a>
+        </div>
+      </div>
+      <div id="confetti" class="confetti-wrap" aria-hidden="true"></div>
     </div>
   </div>
 </section>
