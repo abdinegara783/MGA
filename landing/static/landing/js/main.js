@@ -139,6 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var paxPlusEl = document.getElementById("paxPlus");
   var paxCountEl = document.getElementById("paxCount");
   var paxBadgeEl = document.getElementById("paxBadge");
+  var paxMinusEl2 = document.getElementById("paxMinus2");
+  var paxPlusEl2 = document.getElementById("paxPlus2");
+  var paxCountEl2 = document.getElementById("paxCount2");
+  var paxBadgeEl2 = document.getElementById("paxBadge2");
   var metricPaxEl = document.getElementById("metricPax");
   var metricUsdEl = document.getElementById("metricUsd");
   var totalUsdLineEl = document.getElementById("totalUsdLine");
@@ -220,4 +224,90 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCalc();
     fetchRate();
   }
+  var updateBadge2 = function (pax) {
+    if (paxBadgeEl2) {
+      paxBadgeEl2.classList.remove("badge-blue", "badge-gold");
+      if (pax === 1) {
+        paxBadgeEl2.classList.add("badge-blue");
+        paxBadgeEl2.textContent = "Perorangan";
+      } else if (pax >= 2 && pax <= 9) {
+        paxBadgeEl2.classList.add("badge-blue");
+        paxBadgeEl2.textContent = "Grup kecil";
+      } else {
+        paxBadgeEl2.classList.add("badge-gold");
+        paxBadgeEl2.textContent = "Grup";
+      }
+    }
+  };
+  var updateCalcOrig = updateCalc;
+  updateCalc = function () {
+    updateCalcOrig();
+    var pax = parseInt((paxCountEl && paxCountEl.textContent) || "1", 10) || 1;
+    if (paxCountEl2) paxCountEl2.textContent = pax.toLocaleString("id-ID");
+    updateBadge2(pax);
+  };
+  if (paxMinusEl2 && paxPlusEl2 && paxCountEl) {
+    paxMinusEl2.addEventListener("click", function () {
+      var pax = parseInt(paxCountEl.textContent, 10) || 1;
+      pax = Math.max(1, pax - 1);
+      paxCountEl.textContent = pax.toLocaleString("id-ID");
+      updateCalc();
+    });
+    paxPlusEl2.addEventListener("click", function () {
+      var pax = parseInt(paxCountEl.textContent, 10) || 1;
+      pax = pax + 1;
+      paxCountEl.textContent = pax.toLocaleString("id-ID");
+      updateCalc();
+    });
+  }
+  var form = document.getElementById("formPemesan");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      var fields = [
+        { id: "nama_pemesan", message: "Wajib diisi" },
+        { id: "wa_pemesan", message: "Wajib diisi" },
+        { id: "email_pemesan", message: "Email tidak valid", type: "email" },
+        { id: "tgl_berangkat", message: "Wajib diisi" },
+        { id: "jenis_visa", message: "Pilih jenis visa" }
+      ];
+      var hasError = false;
+      fields.forEach(function (f) {
+        var el = document.getElementById(f.id);
+        var wrap = el ? el.parentElement : null;
+        var err = wrap ? wrap.querySelector(".error-message") : null;
+        var val = el ? el.value.trim() : "";
+        var valid = val.length > 0;
+        if (f.type === "email" && valid) {
+          valid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(val);
+        }
+        if (!valid) {
+          hasError = true;
+          if (err) err.textContent = f.message;
+          if (el) el.setAttribute("aria-invalid", "true");
+        } else {
+          if (err) err.textContent = "";
+          if (el) el.removeAttribute("aria-invalid");
+        }
+      });
+      if (hasError) {
+        e.preventDefault();
+      }
+    });
+  }
+  var filePassport = document.getElementById("file_passport");
+  var fileFoto = document.getElementById("file_foto");
+  var fileKtp = document.getElementById("file_ktp");
+  var namePassport = document.getElementById("name_passport");
+  var nameFoto = document.getElementById("name_foto");
+  var nameKtp = document.getElementById("name_ktp");
+  var bindFile = function (input, label) {
+    if (!input || !label) return;
+    input.addEventListener("change", function () {
+      var f = input.files && input.files[0];
+      label.textContent = f ? f.name : "";
+    });
+  };
+  bindFile(filePassport, namePassport);
+  bindFile(fileFoto, nameFoto);
+  bindFile(fileKtp, nameKtp);
 });

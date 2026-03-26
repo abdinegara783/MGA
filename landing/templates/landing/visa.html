@@ -52,4 +52,85 @@
     </div>
   </div>
 </section>
+<section class="section">
+  <div class="container">
+    <div class="visa-form-grid">
+      <div class="card card-dark">
+        <div class="card-title">Data Pemesan</div>
+        <form id="formPemesan" action="#" novalidate>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="label-small" for="nama_pemesan">Nama pemohon / nama grup</label>
+              <input id="nama_pemesan" name="nama_pemesan" type="text" class="input" placeholder="Nama" required>
+              <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+              <label class="label-small" for="wa_pemesan">No. WhatsApp</label>
+              <input id="wa_pemesan" name="wa_pemesan" type="text" class="input" placeholder="08xxxxxxxxxx" required>
+              <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+              <label class="label-small" for="email_pemesan">Email</label>
+              <input id="email_pemesan" name="email_pemesan" type="email" class="input" placeholder="nama@contoh.com" required>
+              <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+              <label class="label-small" for="tgl_berangkat">Tanggal keberangkatan</label>
+              <input id="tgl_berangkat" name="tgl_berangkat" type="date" class="input" required>
+              <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+              <label class="label-small" for="jenis_visa">Jenis visa</label>
+              <select id="jenis_visa" name="jenis_visa" class="select" required>
+                <option value="">Pilih jenis visa</option>
+                <option>Visa Umrah</option>
+                <option>Visa Ziarah</option>
+                <option>Visa Wisata</option>
+                <option>Visa Haji Khusus</option>
+              </select>
+              <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+              <label class="label-small">Jumlah pax</label>
+              <div class="pax-inline">
+                <button id="paxMinus2" type="button" class="btn btn-secondary btn-xs">−</button>
+                <div id="paxCount2" class="pax-count">35</div>
+                <button id="paxPlus2" type="button" class="btn btn-secondary btn-xs">+</button>
+                <span id="paxBadge2" class="pax-badge badge-gold">Grup</span>
+              </div>
+            </div>
+            <div class="form-group form-span-2">
+              <label class="label-small" for="catatan">Catatan tambahan</label>
+              <textarea id="catatan" name="catatan" class="textarea" rows="4" placeholder="Tuliskan kebutuhan atau pertanyaan Anda (opsional)"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg">Kirim Data Pemesan</button>
+          </div>
+        </form>
+      </div>
+      <div class="card card-dark">
+        <div class="card-title">Upload Dokumen</div>
+        <div class="file-grid">
+          <div class="file-row">
+            <label class="label-small" for="file_passport">Passport scan</label>
+            <input id="file_passport" type="file" accept="image/*,.pdf" class="input">
+            <div id="name_passport" class="file-name"></div>
+          </div>
+          <div class="file-row">
+            <label class="label-small" for="file_foto">Foto 4×6 terbaru</label>
+            <input id="file_foto" type="file" accept="image/*" class="input">
+            <div id="name_foto" class="file-name"></div>
+          </div>
+          <div class="file-row">
+            <label class="label-small" for="file_ktp">KTP pemohon</label>
+            <input id="file_ktp" type="file" accept="image/*,.pdf" class="input">
+            <div id="name_ktp" class="file-name"></div>
+          </div>
+          <div class="note">Maks. 2MB per file, format JPG/PNG/PDF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
