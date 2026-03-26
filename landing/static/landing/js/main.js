@@ -132,4 +132,92 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
+  var rateValueEl = document.getElementById("rateValue");
+  var rateTimeEl = document.getElementById("rateTime");
+  var rateRefreshEl = document.getElementById("rateRefresh");
+  var paxMinusEl = document.getElementById("paxMinus");
+  var paxPlusEl = document.getElementById("paxPlus");
+  var paxCountEl = document.getElementById("paxCount");
+  var paxBadgeEl = document.getElementById("paxBadge");
+  var metricPaxEl = document.getElementById("metricPax");
+  var metricUsdEl = document.getElementById("metricUsd");
+  var totalUsdLineEl = document.getElementById("totalUsdLine");
+  var totalIdrEl = document.getElementById("totalIdr");
+  var RATE_FALLBACK = 16400;
+  var PRICE = 135;
+  var rate = RATE_FALLBACK;
+  var updateTime = function () {
+    var d = new Date();
+    var hh = String(d.getHours()).padStart(2, "0");
+    var mm = String(d.getMinutes()).padStart(2, "0");
+    if (rateTimeEl) rateTimeEl.textContent = hh + ":" + mm;
+  };
+  var renderRate = function () {
+    if (rateValueEl) rateValueEl.textContent = "Rp " + rate.toLocaleString("id-ID");
+    updateTime();
+  };
+  var fetchRate = function () {
+    fetch("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.usd && typeof data.usd.idr === "number") {
+          rate = Math.round(data.usd.idr);
+        } else {
+          rate = RATE_FALLBACK;
+        }
+        renderRate();
+        updateCalc();
+      })
+      .catch(function () {
+        rate = RATE_FALLBACK;
+        renderRate();
+        updateCalc();
+      });
+  };
+  var updateBadge = function (pax) {
+    if (!paxBadgeEl) return;
+    paxBadgeEl.classList.remove("badge-blue", "badge-gold");
+    if (pax === 1) {
+      paxBadgeEl.classList.add("badge-blue");
+      paxBadgeEl.textContent = "Perorangan";
+    } else if (pax >= 2 && pax <= 9) {
+      paxBadgeEl.classList.add("badge-blue");
+      paxBadgeEl.textContent = "Grup kecil";
+    } else {
+      paxBadgeEl.classList.add("badge-gold");
+      paxBadgeEl.textContent = "Grup";
+    }
+  };
+  var updateCalc = function () {
+    if (!paxCountEl) return;
+    var pax = parseInt(paxCountEl.textContent, 10) || 1;
+    var totalUsd = pax * PRICE;
+    updateBadge(pax);
+    if (metricPaxEl) metricPaxEl.textContent = pax.toLocaleString("id-ID");
+    if (metricUsdEl) metricUsdEl.textContent = "$" + totalUsd.toLocaleString("id-ID");
+    if (totalUsdLineEl) totalUsdLineEl.textContent = "$" + totalUsd.toLocaleString("id-ID") + " × Rp " + rate.toLocaleString("id-ID");
+    if (totalIdrEl) totalIdrEl.textContent = "Rp " + (totalUsd * rate).toLocaleString("id-ID");
+  };
+  if (paxMinusEl && paxPlusEl && paxCountEl) {
+    paxMinusEl.addEventListener("click", function () {
+      var pax = parseInt(paxCountEl.textContent, 10) || 1;
+      pax = Math.max(1, pax - 1);
+      paxCountEl.textContent = pax.toLocaleString("id-ID");
+      updateCalc();
+    });
+    paxPlusEl.addEventListener("click", function () {
+      var pax = parseInt(paxCountEl.textContent, 10) || 1;
+      pax = pax + 1;
+      paxCountEl.textContent = pax.toLocaleString("id-ID");
+      updateCalc();
+    });
+  }
+  if (rateRefreshEl) {
+    rateRefreshEl.addEventListener("click", fetchRate);
+  }
+  if (rateValueEl) {
+    renderRate();
+    updateCalc();
+    fetchRate();
+  }
 });

@@ -1,0 +1,55 @@
+{% extends "landing/base.html" %}
+{% block body_class %}bg-navy{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="visa-header">
+      <div class="visa-brand">Al-Safar ✦ Travel</div>
+      <div class="visa-title">Form Pemesanan Visa</div>
+      <div class="visa-meta">
+        <span class="visa-badge">✓ Terdaftar Kemenag RI</span>
+        <div class="visa-rate">
+          <span class="rate-text">USD 1 = <span id="rateValue">Rp 16.400</span></span>
+          <span class="rate-time">— diperbarui: <span id="rateTime">--:--</span></span>
+          <button id="rateRefresh" type="button" class="btn btn-secondary btn-xs">Perbarui Kurs</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="calc-sticky card">
+      <div class="calc-head">
+        <div class="calc-price">$135 / visa</div>
+        <div class="pax-controls">
+          <button id="paxMinus" type="button" class="btn btn-secondary btn-xs">−</button>
+          <div id="paxCount" class="pax-count">35</div>
+          <button id="paxPlus" type="button" class="btn btn-secondary btn-xs">+</button>
+          <span id="paxBadge" class="pax-badge badge-gold">Grup</span>
+        </div>
+      </div>
+      <div class="calc-metrics">
+        <div class="metric-card">
+          <div class="metric-label">Harga/visa</div>
+          <div class="metric-value">$135</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Total pax</div>
+          <div id="metricPax" class="metric-value">35</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Total USD</div>
+          <div id="metricUsd" class="metric-value">$4.725</div>
+        </div>
+      </div>
+      <div class="calc-total">
+        <div class="total-left">
+          <span id="totalUsdLine">$4.725 × Rp 16.400</span>
+        </div>
+        <div class="total-right">
+          <span id="totalIdr" class="total-idr">Rp 77.490.000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'landing/css/base.css' %}">
 </head>
-<body class="site-body">
+<body class="site-body {% block body_class %}{% endblock %}">
   <div id="loading" class="loading">
     <div class="loading-inner">
       <div class="loading-logo">Al‑Safar Travel</div>
@@ -20,6 +20,7 @@
     <div class="container nav-content">
       <div class="brand">MGA ✦ Travel</div>
       <nav class="nav-links">
+        <a href="{% url 'landing:visa' %}">Visa</a>
         <a href="#layanan">Layanan</a>
         <a href="#paket">Paket</a>
         <a href="#testimoni">Testimoni</a>
