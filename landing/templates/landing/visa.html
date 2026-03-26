@@ -1,82 +1,82 @@
 {% extends "landing/base.html" %}
 {% block body_class %}bg-navy{% endblock %}
 {% block content %}
-<section class="section">
-  <div class="container">
-    <div class="visa-header">
-      <div class="visa-brand">Al-Safar ✦ Travel</div>
-      <div class="visa-title">Form Pemesanan Visa</div>
-      <div class="visa-meta">
-        <span class="visa-badge">✓ Terdaftar Kemenag RI</span>
-        <div class="visa-rate">
-          <span class="rate-text">USD 1 = <span id="rateValue">Rp 16.400</span></span>
-          <span class="rate-time">— diperbarui: <span id="rateTime">--:--</span></span>
-          <button id="rateRefresh" type="button" class="btn btn-secondary btn-xs">Perbarui Kurs</button>
+<section class="vf-section">
+  <div class="vf-container">
+    <div class="vf-header">
+      <div class="vf-brand">Madinah Group Amanah ✦ Travel</div>
+      <div class="vf-title">Form Pemesanan Visa</div>
+      <div class="vf-meta">
+        <span class="vf-badge">✓ Terdaftar Kemenag RI</span>
+        <div class="vf-rate">
+          <span class="vf-rate-text">USD 1 = <span id="rateValue">Rp 16.400</span></span>
+          <span class="vf-rate-time">— diperbarui: <span id="rateTime">--:--</span></span>
+          <button id="rateRefresh" type="button" class="vf-btn vf-btn-secondary vf-btn-xs" aria-label="Perbarui Kurs">Perbarui Kurs</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="calc-sticky card">
-      <div class="calc-head">
-        <div class="calc-price">$135 / visa</div>
-        <div class="pax-controls">
-          <button id="paxMinus" type="button" class="btn btn-secondary btn-xs">−</button>
-          <div id="paxCount" class="pax-count">35</div>
-          <button id="paxPlus" type="button" class="btn btn-secondary btn-xs">+</button>
-          <span id="paxBadge" class="pax-badge badge-gold">Grup</span>
+  <div class="vf-container">
+    <div class="vf-calc vf-card">
+      <div class="vf-calc-head">
+        <div class="vf-calc-price">$135 / visa</div>
+        <div class="vf-pax-controls">
+          <button id="paxMinus" type="button" class="vf-btn vf-btn-secondary vf-btn-xs" aria-label="Kurangi jumlah pax">−</button>
+          <div id="paxCount" class="vf-pax-count">35</div>
+          <button id="paxPlus" type="button" class="vf-btn vf-btn-secondary vf-btn-xs" aria-label="Tambah jumlah pax">+</button>
+          <span id="paxBadge" class="vf-pax-badge vf-badge-gold">Grup</span>
         </div>
       </div>
-      <div class="calc-metrics">
-        <div class="metric-card">
-          <div class="metric-label">Harga/visa</div>
-          <div class="metric-value">$135</div>
+      <div class="vf-calc-metrics">
+        <div class="vf-metric-card">
+          <div class="vf-metric-label">Harga/visa</div>
+          <div class="vf-metric-value">$135</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-label">Total pax</div>
-          <div id="metricPax" class="metric-value">35</div>
+        <div class="vf-metric-card">
+          <div class="vf-metric-label">Total pax</div>
+          <div id="metricPax" class="vf-metric-value">35</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-label">Total USD</div>
-          <div id="metricUsd" class="metric-value">$4.725</div>
+        <div class="vf-metric-card">
+          <div class="vf-metric-label">Total USD</div>
+          <div id="metricUsd" class="vf-metric-value">$4.725</div>
         </div>
       </div>
-      <div class="calc-total">
-        <div class="total-left">
+      <div class="vf-calc-total">
+        <div class="vf-total-left">
           <span id="totalUsdLine">$4.725 × Rp 16.400</span>
         </div>
-        <div class="total-right">
-          <span id="totalIdr" class="total-idr">Rp 77.490.000</span>
+        <div class="vf-total-right">
+          <span id="totalIdr" class="vf-total-idr">Rp 77.490.000</span>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section class="section">
-  <div class="container">
-    <div class="card card-dark">
-      <div class="card-title">Pilih Metode Pembayaran</div>
-      <div class="pay-grid">
-        <div class="pay-card active" data-method="bank">
-          <div class="pay-icon">
+<section class="vf-section">
+  <div class="vf-container">
+    <div class="vf-card vf-card-dark">
+      <div class="vf-card-title">Pilih Metode Pembayaran</div>
+      <div class="vf-pay-grid">
+        <div class="vf-pay-card active" data-method="bank" aria-label="Metode Transfer Bank">
+          <div class="vf-pay-icon">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
               <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
               <path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </div>
-          <div class="pay-name">Transfer Bank</div>
+          <div class="vf-pay-name">Transfer Bank</div>
         </div>
-        <div class="pay-card" data-method="va">
-          <div class="pay-icon">
+        <div class="vf-pay-card" data-method="va" aria-label="Metode Virtual Account">
+          <div class="vf-pay-icon">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
               <rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/>
               <path d="M8 8h8M8 12h8M8 16h6" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </div>
-          <div class="pay-name">Virtual Account</div>
+          <div class="vf-pay-name">Virtual Account</div>
         </div>
-        <div class="pay-card" data-method="qris">
-          <div class="pay-icon">
+        <div class="vf-pay-card" data-method="qris" aria-label="Metode QRIS">
+          <div class="vf-pay-icon">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
               <rect x="4" y="4" width="6" height="6" stroke="currentColor" stroke-width="1.6"/>
               <rect x="14" y="4" width="6" height="6" stroke="currentColor" stroke-width="1.6"/>
@@ -85,72 +85,72 @@
               <path d="M7 7h2M17 7h2M7 17h2M17 17h2" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </div>
-          <div class="pay-name">QRIS</div>
+          <div class="vf-pay-name">QRIS</div>
         </div>
-        <div class="pay-card" data-method="dp">
-          <div class="pay-icon">
+        <div class="vf-pay-card" data-method="dp" aria-label="Metode DP 50% Cicilan">
+          <div class="vf-pay-icon">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
               <path d="M12 7v5l4 2" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </div>
-          <div class="pay-name">DP 50% — Cicilan</div>
+          <div class="vf-pay-name">DP 50% — Cicilan</div>
         </div>
       </div>
-      <div id="payError" class="error-message"></div>
-      <div class="pay-panels">
-        <div id="payPanelBank" class="pay-panel show">
-          <div class="accounts">
-            <div class="account-row">
-              <div class="account-label">BCA</div>
-              <div class="account-number">1234 5678 90</div>
-              <div class="account-name">a.n. PT Al-Safar Travel</div>
-              <button class="btn btn-secondary btn-xs copy-btn" data-copy="1234567890">Salin</button>
+      <div id="payError" class="vf-error"></div>
+      <div class="vf-pay-panels">
+        <div id="payPanelBank" class="vf-pay-panel show">
+          <div class="vf-accounts">
+            <div class="vf-account-row">
+              <div class="vf-account-label">BCA</div>
+              <div class="vf-account-number">1234 5678 90</div>
+              <div class="vf-account-name">a.n. PT Madinah Group Amanah</div>
+              <button class="vf-btn vf-btn-secondary vf-btn-xs vf-copy-btn" data-copy="1234567890" aria-label="Salin nomor rekening BCA">Salin</button>
             </div>
-            <div class="account-row">
-              <div class="account-label">BRI</div>
-              <div class="account-number">0987 6543 21</div>
-              <div class="account-name">a.n. PT Al-Safar Travel</div>
-              <button class="btn btn-secondary btn-xs copy-btn" data-copy="0987654321">Salin</button>
+            <div class="vf-account-row">
+              <div class="vf-account-label">BRI</div>
+              <div class="vf-account-number">0987 6543 21</div>
+              <div class="vf-account-name">a.n. PT Madinah Group Amanah</div>
+              <button class="vf-btn vf-btn-secondary vf-btn-xs vf-copy-btn" data-copy="0987654321" aria-label="Salin nomor rekening BRI">Salin</button>
             </div>
-            <div class="account-row">
-              <div class="account-label">Mandiri</div>
-              <div class="account-number">1122 3344 55</div>
-              <div class="account-name">a.n. PT Al-Safar Travel</div>
-              <button class="btn btn-secondary btn-xs copy-btn" data-copy="1122334455">Salin</button>
+            <div class="vf-account-row">
+              <div class="vf-account-label">Mandiri</div>
+              <div class="vf-account-number">1122 3344 55</div>
+              <div class="vf-account-name">a.n. PT Madinah Group Amanah</div>
+              <button class="vf-btn vf-btn-secondary vf-btn-xs vf-copy-btn" data-copy="1122334455" aria-label="Salin nomor rekening Mandiri">Salin</button>
             </div>
           </div>
-          <div class="pay-note">Konfirmasi transfer via WhatsApp ke 0812-XXXX-XXXX</div>
+          <div class="vf-pay-note">Konfirmasi transfer via WhatsApp ke 0812-XXXX-XXXX</div>
         </div>
-        <div id="payPanelVa" class="pay-panel">
-          <div class="pay-info">Nomor VA dikirim otomatis via WhatsApp dalam 30 menit setelah pesanan dikonfirmasi tim kami pada hari kerja.</div>
+        <div id="payPanelVa" class="vf-pay-panel">
+          <div class="vf-pay-info">Nomor VA dikirim otomatis via WhatsApp dalam 30 menit setelah pesanan dikonfirmasi tim kami pada hari kerja.</div>
         </div>
-        <div id="payPanelQris" class="pay-panel">
-          <div class="pay-info">QR Code dikirim via WhatsApp setelah konfirmasi. Berlaku untuk semua m-banking & dompet digital berlogo QRIS.</div>
+        <div id="payPanelQris" class="vf-pay-panel">
+          <div class="vf-pay-info">QR Code dikirim via WhatsApp setelah konfirmasi. Berlaku untuk semua m-banking & dompet digital berlogo QRIS.</div>
         </div>
-        <div id="payPanelDp" class="pay-panel">
-          <div class="dp-lines">
-            <div class="dp-row">Bayar sekarang (DP 50%): <span id="dpNow">Rp 0</span></div>
-            <div class="dp-row">Pelunasan H-7 keberangkatan: <span id="dpLater">Rp 0</span></div>
+        <div id="payPanelDp" class="vf-pay-panel">
+          <div class="vf-dp-lines">
+            <div class="vf-dp-row">Bayar sekarang (DP 50%): <span id="dpNow">Rp 0</span></div>
+            <div class="vf-dp-row">Pelunasan H-7 keberangkatan: <span id="dpLater">Rp 0</span></div>
           </div>
-          <div class="accounts">
-            <div class="account-row">
-              <div class="account-label">BCA</div>
-              <div class="account-number">1234 5678 90</div>
-              <div class="account-name">a.n. PT Al-Safar Travel</div>
-              <button class="btn btn-secondary btn-xs copy-btn" data-copy="1234567890">Salin</button>
+          <div class="vf-accounts">
+            <div class="vf-account-row">
+              <div class="vf-account-label">BCA</div>
+              <div class="vf-account-number">1234 5678 90</div>
+              <div class="vf-account-name">a.n. PT Madinah Group Amanah</div>
+              <button class="vf-btn vf-btn-secondary vf-btn-xs vf-copy-btn" data-copy="1234567890" aria-label="Salin nomor rekening BCA">Salin</button>
             </div>
-            <div class="account-row">
-              <div class="account-label">BRI</div>
-              <div class="account-number">0987 6543 21</div>
-              <div class="account-name">a.n. PT Al-Safar Travel</div>
-              <button class="btn btn-secondary btn-xs copy-btn" data-copy="0987654321">Salin</button>
+            <div class="vf-account-row">
+              <div class="vf-account-label">BRI</div>
+              <div class="vf-account-number">0987 6543 21</div>
+              <div class="vf-account-name">a.n. PT Madinah Group Amanah</div>
+              <button class="vf-btn vf-btn-secondary vf-btn-xs vf-copy-btn" data-copy="0987654321" aria-label="Salin nomor rekening BRI">Salin</button>
             </div>
-            <div class="account-row">
-              <div class="account-label">Mandiri</div>
-              <div class="account-number">1122 3344 55</div>
-              <div class="account-name">a.n. PT Al-Safar Travel</div>
-              <button class="btn btn-secondary btn-xs copy-btn" data-copy="1122334455">Salin</button>
+            <div class="vf-account-row">
+              <div class="vf-account-label">Mandiri</div>
+              <div class="vf-account-number">1122 3344 55</div>
+              <div class="vf-account-name">a.n. PT Madinah Group Amanah</div>
+              <button class="vf-btn vf-btn-secondary vf-btn-xs vf-copy-btn" data-copy="1122334455" aria-label="Salin nomor rekening Mandiri">Salin</button>
             </div>
           </div>
         </div>
@@ -158,112 +158,112 @@
     </div>
   </div>
 </section>
-<section class="section">
-  <div class="container">
-    <div class="visa-form-grid">
-      <div class="card card-dark">
-        <div class="card-title">Data Pemesan</div>
+<section class="vf-section">
+  <div class="vf-container">
+    <div class="vf-form-grid">
+      <div class="vf-card vf-card-dark">
+        <div class="vf-card-title">Data Pemesan</div>
         <form id="formPemesan" action="#" novalidate>
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label class="label-small" for="nama_pemesan">Nama pemohon / nama grup</label>
-              <input id="nama_pemesan" name="nama_pemesan" type="text" class="input" placeholder="Nama" required>
-              <div class="error-message"></div>
+          <div class="vf-form-grid-2">
+            <div class="vf-form-group">
+              <label class="vf-label-small" for="nama_pemesan">Nama pemohon / nama grup</label>
+              <input id="nama_pemesan" name="nama_pemesan" type="text" class="vf-input" placeholder="Nama" required aria-describedby="err_nama_pemesan">
+              <div class="vf-error" id="err_nama_pemesan"></div>
             </div>
-            <div class="form-group">
-              <label class="label-small" for="wa_pemesan">No. WhatsApp</label>
-              <input id="wa_pemesan" name="wa_pemesan" type="text" class="input" placeholder="08xxxxxxxxxx" required>
-              <div class="error-message"></div>
+            <div class="vf-form-group">
+              <label class="vf-label-small" for="wa_pemesan">No. WhatsApp</label>
+              <input id="wa_pemesan" name="wa_pemesan" type="text" class="vf-input" placeholder="08xxxxxxxxxx" required aria-describedby="err_wa_pemesan">
+              <div class="vf-error" id="err_wa_pemesan"></div>
             </div>
-            <div class="form-group">
-              <label class="label-small" for="email_pemesan">Email</label>
-              <input id="email_pemesan" name="email_pemesan" type="email" class="input" placeholder="nama@contoh.com" required>
-              <div class="error-message"></div>
+            <div class="vf-form-group">
+              <label class="vf-label-small" for="email_pemesan">Email</label>
+              <input id="email_pemesan" name="email_pemesan" type="email" class="vf-input" placeholder="nama@contoh.com" required aria-describedby="err_email_pemesan">
+              <div class="vf-error" id="err_email_pemesan"></div>
             </div>
-            <div class="form-group">
-              <label class="label-small" for="tgl_berangkat">Tanggal keberangkatan</label>
-              <input id="tgl_berangkat" name="tgl_berangkat" type="date" class="input" required>
-              <div class="error-message"></div>
+            <div class="vf-form-group">
+              <label class="vf-label-small" for="tgl_berangkat">Tanggal keberangkatan</label>
+              <input id="tgl_berangkat" name="tgl_berangkat" type="date" class="vf-input" required aria-describedby="err_tgl_berangkat">
+              <div class="vf-error" id="err_tgl_berangkat"></div>
             </div>
-            <div class="form-group">
-              <label class="label-small" for="jenis_visa">Jenis visa</label>
-              <select id="jenis_visa" name="jenis_visa" class="select" required>
+            <div class="vf-form-group">
+              <label class="vf-label-small" for="jenis_visa">Jenis visa</label>
+              <select id="jenis_visa" name="jenis_visa" class="vf-select" required aria-describedby="err_jenis_visa">
                 <option value="">Pilih jenis visa</option>
                 <option>Visa Umrah</option>
                 <option>Visa Ziarah</option>
                 <option>Visa Wisata</option>
                 <option>Visa Haji Khusus</option>
               </select>
-              <div class="error-message"></div>
+              <div class="vf-error" id="err_jenis_visa"></div>
             </div>
-            <div class="form-group">
-              <label class="label-small">Jumlah pax</label>
-              <div class="pax-inline">
-                <button id="paxMinus2" type="button" class="btn btn-secondary btn-xs">−</button>
-                <div id="paxCount2" class="pax-count">35</div>
-                <button id="paxPlus2" type="button" class="btn btn-secondary btn-xs">+</button>
-                <span id="paxBadge2" class="pax-badge badge-gold">Grup</span>
+            <div class="vf-form-group">
+              <label class="vf-label-small">Jumlah pax</label>
+              <div class="vf-pax-inline">
+                <button id="paxMinus2" type="button" class="vf-btn vf-btn-secondary vf-btn-xs" aria-label="Kurangi jumlah pax">−</button>
+                <div id="paxCount2" class="vf-pax-count">35</div>
+                <button id="paxPlus2" type="button" class="vf-btn vf-btn-secondary vf-btn-xs" aria-label="Tambah jumlah pax">+</button>
+                <span id="paxBadge2" class="vf-pax-badge vf-badge-gold">Grup</span>
               </div>
             </div>
-            <div class="form-group form-span-2">
-              <label class="label-small" for="catatan">Catatan tambahan</label>
-              <textarea id="catatan" name="catatan" class="textarea" rows="4" placeholder="Tuliskan kebutuhan atau pertanyaan Anda (opsional)"></textarea>
+            <div class="vf-form-group vf-form-span-2">
+              <label class="vf-label-small" for="catatan">Catatan tambahan</label>
+              <textarea id="catatan" name="catatan" class="vf-textarea" rows="4" placeholder="Tuliskan kebutuhan atau pertanyaan Anda (opsional)"></textarea>
             </div>
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary btn-lg">Kirim Data Pemesan</button>
+          <div class="vf-form-actions">
+            <button type="submit" class="vf-btn vf-btn-primary vf-btn-lg" aria-label="Kirim Data Pemesan">Kirim Data Pemesan</button>
           </div>
         </form>
       </div>
-      <div class="card card-dark">
-        <div class="card-title">Upload Dokumen</div>
-        <div class="file-grid">
-          <div class="file-row">
-            <label class="label-small" for="file_passport">Passport scan</label>
-            <input id="file_passport" type="file" accept="image/*,.pdf" class="input">
-            <div id="name_passport" class="file-name"></div>
+      <div class="vf-card vf-card-dark">
+        <div class="vf-card-title">Upload Dokumen</div>
+        <div class="vf-file-grid">
+          <div class="vf-file-row">
+            <label class="vf-label-small" for="file_passport">Passport scan</label>
+            <input id="file_passport" type="file" accept="image/*,.pdf" class="vf-input" aria-label="Unggah passport">
+            <div id="name_passport" class="vf-file-name"></div>
           </div>
-          <div class="file-row">
-            <label class="label-small" for="file_foto">Foto 4×6 terbaru</label>
-            <input id="file_foto" type="file" accept="image/*" class="input">
-            <div id="name_foto" class="file-name"></div>
+          <div class="vf-file-row">
+            <label class="vf-label-small" for="file_foto">Foto 4×6 terbaru</label>
+            <input id="file_foto" type="file" accept="image/*" class="vf-input" aria-label="Unggah foto 4x6">
+            <div id="name_foto" class="vf-file-name"></div>
           </div>
-          <div class="file-row">
-            <label class="label-small" for="file_ktp">KTP pemohon</label>
-            <input id="file_ktp" type="file" accept="image/*,.pdf" class="input">
-            <div id="name_ktp" class="file-name"></div>
+          <div class="vf-file-row">
+            <label class="vf-label-small" for="file_ktp">KTP pemohon</label>
+            <input id="file_ktp" type="file" accept="image/*,.pdf" class="vf-input" aria-label="Unggah KTP">
+            <div id="name_ktp" class="vf-file-name"></div>
           </div>
-          <div class="note">Maks. 2MB per file, format JPG/PNG/PDF</div>
+          <div class="vf-note">Maks. 2MB per file, format JPG/PNG/PDF</div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section class="section">
-  <div class="container">
-    <div class="card card-dark">
-      <div class="form-actions">
-        <button id="submitOrder" type="button" class="btn btn-primary btn-lg btn-full">
-          <span class="btn-label">Kirim Pesanan Sekarang →</span>
-          <span class="btn-spinner" aria-hidden="true"></span>
+<section class="vf-section">
+  <div class="vf-container">
+    <div class="vf-card vf-card-dark">
+      <div class="vf-form-actions">
+        <button id="submitOrder" type="button" class="vf-btn vf-btn-primary vf-btn-lg vf-btn-full" aria-label="Kirim Pesanan Sekarang">
+          <span class="vf-btn-label">Kirim Pesanan Sekarang →</span>
+          <span class="vf-btn-spinner" aria-hidden="true"></span>
         </button>
       </div>
-      <div id="successBox" class="success-box" style="display:none">
-        <div class="success-title">✓ Pesanan Berhasil Dikirim!</div>
-        <div class="success-items">
-          <div><span class="s-label">Nama Pemesan:</span> <span id="sNama"></span></div>
-          <div><span class="s-label">Jenis Visa & Pax:</span> <span id="sVisaPax"></span></div>
-          <div><span class="s-label">Total Pembayaran:</span> <span id="sTotal"></span></div>
-          <div><span class="s-label">Metode Pembayaran:</span> <span id="sMethod"></span></div>
-          <div><span class="s-label">Kontak:</span> Tim kami akan menghubungi <span id="sWa"></span> dalam 1×24 jam</div>
-          <div><span class="s-label">Nomor Referensi:</span> <span id="sRef"></span></div>
+      <div id="successBox" class="vf-success" style="display:none">
+        <div class="vf-success-title">✓ Pesanan Berhasil Dikirim!</div>
+        <div class="vf-success-items">
+          <div><span class="vf-s-label">Nama Pemesan:</span> <span id="sNama"></span></div>
+          <div><span class="vf-s-label">Jenis Visa & Pax:</span> <span id="sVisaPax"></span></div>
+          <div><span class="vf-s-label">Total Pembayaran:</span> <span id="sTotal"></span></div>
+          <div><span class="vf-s-label">Metode Pembayaran:</span> <span id="sMethod"></span></div>
+          <div><span class="vf-s-label">Kontak:</span> Tim kami akan menghubungi <span id="sWa"></span> dalam 1×24 jam</div>
+          <div><span class="vf-s-label">Nomor Referensi:</span> <span id="sRef"></span></div>
         </div>
-        <div class="success-actions">
-          <button id="orderAgain" type="button" class="btn btn-secondary btn-xs">Pesan Lagi</button>
-          <a id="orderChat" href="#" target="_blank" rel="noopener" class="btn btn-primary btn-xs">Chat WhatsApp</a>
+        <div class="vf-success-actions">
+          <button id="orderAgain" type="button" class="vf-btn vf-btn-secondary vf-btn-xs" aria-label="Pesan Lagi">Pesan Lagi</button>
+          <a id="orderChat" href="#" target="_blank" rel="noopener" class="vf-btn vf-btn-primary vf-btn-xs" aria-label="Chat WhatsApp">Chat WhatsApp</a>
         </div>
       </div>
-      <div id="confetti" class="confetti-wrap" aria-hidden="true"></div>
+      <div id="confetti" class="vf-confetti" aria-hidden="true"></div>
     </div>
   </div>
 </section>

@@ -1188,3 +1188,165 @@ input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="
   .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .testimonial-grid { grid-template-columns: repeat(1, minmax(0, 1fr)); }
 }
+ .vf-section {
+  padding: 48px 0;
+ }
+ @media (min-width: 768px) {
+  .vf-section { padding: 80px 0; }
+ }
+ .vf-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+ }
+ .vf-header { color: #ffffff; }
+ .vf-brand {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.4px;
+ }
+ .vf-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3.8vw, 36px);
+  margin-top: 6px;
+ }
+ .vf-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+ }
+ .vf-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+ }
+ .vf-rate {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+ }
+ .vf-rate-text { font-weight: 700; }
+ .vf-rate-time { opacity: 0.9; }
+ .vf-rate-text .vf-flash { animation: vfFade 360ms ease; }
+ @keyframes vfFade { 0% { opacity: 0.4; } 100% { opacity: 1; } }
+ .vf-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(10, 22, 40, 0.12);
+  box-shadow: 0 6px 22px rgba(10, 22, 40, 0.08);
+  padding: 18px;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+ }
+ .vf-card-dark {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #ffffff;
+ }
+ .vf-card-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 12px;
+ }
+ .vf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease, background-color 200ms ease;
+ }
+ .vf-btn:active { transform: scale(0.98); }
+ .vf-btn-primary { background-color: var(--gold); color: #0A1628; }
+ .vf-btn-primary:hover { background-color: #b9973f; }
+ .vf-btn-secondary { background-color: #ffffff; color: var(--navy); border: 1px solid rgba(10, 22, 40, 0.15); }
+ .vf-btn-xs { padding: 8px 12px; font-size: 12px; }
+ .vf-btn-lg { padding: 14px 22px; font-size: 16px; }
+ .vf-btn-full { width: 100%; }
+ .vf-btn-spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(10,22,40,0.15);
+  border-top-color: #0A1628;
+  border-radius: 50%;
+  margin-left: 8px;
+  animation: spin 900ms linear infinite;
+ }
+ .vf-btn.loading .vf-btn-spinner { display: inline-block; }
+ .vf-btn.loading .vf-btn-label { opacity: 0.8; }
+ .vf-btn.shake { animation: shake 400ms ease; }
+ .vf-calc { position: sticky; top: 10px; color: var(--navy); }
+ .vf-calc-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+ .vf-calc-price { font-weight: 700; color: var(--navy); }
+ .vf-pax-controls { display: inline-flex; gap: 8px; align-items: center; }
+ .vf-pax-count { min-width: 44px; text-align: center; font-weight: 800; }
+ .vf-pax-count.vf-bump { animation: vfBump 320ms ease; }
+ @keyframes vfBump { 0% { transform: scale(1); } 30% { transform: scale(1.12); } 100% { transform: scale(1); } }
+ .vf-pax-badge { display: inline-block; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; border: 1px solid rgba(10,22,40,0.18); }
+ .vf-badge-blue { background: #e8f1ff; color: #0A1628; border-color: rgba(10,22,40,0.24); }
+ .vf-badge-gold { background: var(--gold); color: #0a0a0a; border-color: var(--gold); }
+ .vf-calc-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }
+ .vf-metric-card { border: 1px solid rgba(10,22,40,0.12); border-radius: 12px; padding: 12px; background: #ffffff; }
+ .vf-metric-label { color: #2a3344; font-size: 13px; }
+ .vf-metric-value { font-weight: 700; color: var(--navy); margin-top: 4px; }
+ .vf-calc-total { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px dashed rgba(10,22,40,0.18); padding-top: 12px; }
+ .vf-total-left { color: #2a3344; font-weight: 600; }
+ .vf-total-idr { color: var(--gold); font-weight: 800; font-size: clamp(18px, 3vw, 24px); }
+ .vf-form-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; }
+ @media (max-width: 900px) { .vf-form-grid { grid-template-columns: 1fr; } }
+ .vf-form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ @media (max-width: 720px) { .vf-form-grid-2 { grid-template-columns: 1fr; } }
+ .vf-form-span-2 { grid-column: 1 / -1; }
+ .vf-form-group { display: grid; gap: 6px; margin-bottom: 12px; }
+ .vf-label-small { font-size: 12px; color: #cbd3e6; }
+ .vf-error { margin-top: 6px; color: #ff6b6b; font-size: 12px; min-height: 16px; }
+ .vf-pax-inline { display: inline-flex; gap: 8px; align-items: center; }
+ .vf-input, .vf-select, .vf-textarea {
+  width: 100%; border: 1px solid rgba(10,22,40,0.18); border-radius: 12px; padding: 12px 12px; background: #ffffff; font-size: 15px; color: #1f2a3b; transition: border-color 200ms ease, box-shadow 200ms ease;
+ }
+ .vf-input:focus, .vf-select:focus, .vf-textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 4px rgba(201,168,76,0.2); }
+ .vf-form-actions { margin-top: 8px; }
+ .vf-file-grid { display: grid; gap: 10px; }
+ .vf-file-row { display: grid; gap: 6px; }
+ .vf-file-name { font-size: 12px; color: #cbd3e6; }
+ .vf-note { margin-top: 8px; font-size: 12px; color: #cbd3e6; }
+ .vf-pay-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+ @media (max-width: 840px) { .vf-pay-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+ @media (max-width: 560px) { .vf-pay-grid { grid-template-columns: 1fr; } }
+ .vf-pay-card {
+  display: grid; justify-items: center; gap: 8px; padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.06); color: #ffffff; cursor: pointer; transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
+ }
+ .vf-pay-card:hover { transform: translateY(-2px); }
+ .vf-pay-card.active { border: 2px solid var(--gold); background: rgba(245, 239, 224, 0.12); }
+ .vf-pay-icon { color: var(--gold); }
+ .vf-pay-name { font-weight: 700; }
+ .vf-pay-panels { position: relative; min-height: 120px; }
+ .vf-pay-panel { display: none; opacity: 0; transform: translateY(8px); transition: opacity 280ms ease, transform 280ms ease; }
+ .vf-pay-panel.show { display: block; opacity: 1; transform: translateY(0); }
+ .vf-accounts { display: grid; gap: 10px; }
+ .vf-account-row { display: grid; grid-template-columns: 80px 1fr auto auto; gap: 8px; align-items: center; }
+ .vf-account-label { font-weight: 700; color: var(--gold); }
+ .vf-account-number { color: #ffffff; }
+ .vf-account-name { color: #cbd3e6; }
+ .vf-pay-note, .vf-pay-info { margin-top: 10px; color: #cbd3e6; }
+ .vf-dp-lines { display: grid; gap: 6px; margin-bottom: 10px; }
+ .vf-dp-row span { font-weight: 800; color: var(--gold); }
+ .vf-success { margin-top: 16px; padding: 16px; border-radius: 14px; background: #e6f9e9; border: 1px solid #3ccf63; color: #0a1615; display: none; transform: scale(0.96); opacity: 0; transition: opacity 280ms ease, transform 280ms ease; }
+ .vf-success.show { display: block; opacity: 1; transform: scale(1); }
+ .vf-success-title { font-weight: 800; margin-bottom: 10px; color: #15803d; }
+ .vf-success-items { display: grid; gap: 6px; }
+ .vf-s-label { font-weight: 700; }
+ .vf-success-actions { margin-top: 12px; display: flex; gap: 8px; }
+ .vf-confetti { position: relative; height: 0; }
+ .vf-confetti-piece { position: fixed; top: -12px; width: 8px; height: 8px; border-radius: 2px; animation: confetti-fall 2800ms ease-in forwards; z-index: 1500; }

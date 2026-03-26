@@ -149,12 +149,12 @@ document.addEventListener("DOMContentLoaded", function () {
   var totalIdrEl = document.getElementById("totalIdr");
   var dpNowEl = document.getElementById("dpNow");
   var dpLaterEl = document.getElementById("dpLater");
-  var payCards = document.querySelectorAll(".pay-card");
+  var payCards = document.querySelectorAll(".vf-pay-card");
   var payPanelBank = document.getElementById("payPanelBank");
   var payPanelVa = document.getElementById("payPanelVa");
   var payPanelQris = document.getElementById("payPanelQris");
   var payPanelDp = document.getElementById("payPanelDp");
-  var copyButtons = document.querySelectorAll(".copy-btn");
+  var copyButtons = document.querySelectorAll(".vf-copy-btn");
   var RATE_FALLBACK = 16400;
   var PRICE = 135;
   var rate = RATE_FALLBACK;
@@ -167,7 +167,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (rateTimeEl) rateTimeEl.textContent = hh + ":" + mm;
   };
   var renderRate = function () {
-    if (rateValueEl) rateValueEl.textContent = "Rp " + rate.toLocaleString("id-ID");
+    if (rateValueEl) {
+      rateValueEl.textContent = "Rp " + rate.toLocaleString("id-ID");
+      rateValueEl.classList.add("vf-flash");
+      setTimeout(function(){ rateValueEl.classList.remove("vf-flash"); }, 360);
+    }
     updateTime();
   };
   var fetchRate = function () {
@@ -190,15 +194,15 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   var updateBadge = function (pax) {
     if (!paxBadgeEl) return;
-    paxBadgeEl.classList.remove("badge-blue", "badge-gold");
+    paxBadgeEl.classList.remove("vf-badge-blue", "vf-badge-gold");
     if (pax === 1) {
-      paxBadgeEl.classList.add("badge-blue");
+      paxBadgeEl.classList.add("vf-badge-blue");
       paxBadgeEl.textContent = "Perorangan";
     } else if (pax >= 2 && pax <= 9) {
-      paxBadgeEl.classList.add("badge-blue");
+      paxBadgeEl.classList.add("vf-badge-blue");
       paxBadgeEl.textContent = "Grup kecil";
     } else {
-      paxBadgeEl.classList.add("badge-gold");
+      paxBadgeEl.classList.add("vf-badge-gold");
       paxBadgeEl.textContent = "Grup";
     }
   };
@@ -278,15 +282,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   var updateBadge2 = function (pax) {
     if (paxBadgeEl2) {
-      paxBadgeEl2.classList.remove("badge-blue", "badge-gold");
+      paxBadgeEl2.classList.remove("vf-badge-blue", "vf-badge-gold");
       if (pax === 1) {
-        paxBadgeEl2.classList.add("badge-blue");
+        paxBadgeEl2.classList.add("vf-badge-blue");
         paxBadgeEl2.textContent = "Perorangan";
       } else if (pax >= 2 && pax <= 9) {
-        paxBadgeEl2.classList.add("badge-blue");
+        paxBadgeEl2.classList.add("vf-badge-blue");
         paxBadgeEl2.textContent = "Grup kecil";
       } else {
-        paxBadgeEl2.classList.add("badge-gold");
+        paxBadgeEl2.classList.add("vf-badge-gold");
         paxBadgeEl2.textContent = "Grup";
       }
     }
@@ -296,6 +300,14 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCalcOrig();
     var pax = parseInt((paxCountEl && paxCountEl.textContent) || "1", 10) || 1;
     if (paxCountEl2) paxCountEl2.textContent = pax.toLocaleString("id-ID");
+    if (paxCountEl) {
+      paxCountEl.classList.add("vf-bump");
+      setTimeout(function(){ paxCountEl.classList.remove("vf-bump"); }, 340);
+    }
+    if (paxCountEl2) {
+      paxCountEl2.classList.add("vf-bump");
+      setTimeout(function(){ paxCountEl2.classList.remove("vf-bump"); }, 340);
+    }
     updateBadge2(pax);
   };
   if (paxMinusEl2 && paxPlusEl2 && paxCountEl) {
@@ -326,11 +338,11 @@ document.addEventListener("DOMContentLoaded", function () {
       fields.forEach(function (f) {
         var el = document.getElementById(f.id);
         var wrap = el ? el.parentElement : null;
-        var err = wrap ? wrap.querySelector(".error-message") : null;
+        var err = wrap ? wrap.querySelector(".vf-error") : null;
         var val = el ? el.value.trim() : "";
         var valid = val.length > 0;
         if (f.type === "email" && valid) {
-          valid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(val);
+          valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
         }
         if (!valid) {
           hasError = true;
@@ -375,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var confettiWrap = document.getElementById("confetti");
   var payError = document.getElementById("payError");
   var getActiveMethod = function () {
-    var active = document.querySelector(".pay-card.active");
+    var active = document.querySelector(".vf-pay-card.active");
     return active ? active.getAttribute("data-method") : null;
   };
   var methodLabel = function (m) {
@@ -390,7 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var colors = ["#C9A84C", "#F5EFE0", "#ffffff"];
     for (var i = 0; i < 30; i++) {
       var piece = document.createElement("span");
-      piece.className = "confetti-piece";
+      piece.className = "vf-confetti-piece";
       var left = Math.floor(Math.random() * 100);
       piece.style.left = left + "vw";
       piece.style.background = colors[i % colors.length];
@@ -416,9 +428,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
     if (payError) payError.textContent = "";
-    var defaultCard = document.querySelector('.pay-card[data-method="bank"]');
+    var defaultCard = document.querySelector('.vf-pay-card[data-method="bank"]');
     if (defaultCard) {
-      document.querySelectorAll(".pay-card").forEach(function (c) { c.classList.remove("active"); });
+      document.querySelectorAll(".vf-pay-card").forEach(function (c) { c.classList.remove("active"); });
       defaultCard.classList.add("active");
       showPanel("bank");
     }
@@ -444,7 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var firstErrorEl = null;
     var setErr = function (id, valid, msg) {
       var el = document.getElementById(id);
-      var err = el && el.parentElement ? el.parentElement.querySelector(".error-message") : null;
+        var err = el && el.parentElement ? el.parentElement.querySelector(".vf-error") : null;
       if (!el) return;
       if (!valid) {
         el.setAttribute("aria-invalid", "true");
@@ -466,14 +478,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var today = new Date(); today.setHours(0,0,0,0);
     var tglDate = tglVal ? new Date(tglVal) : null;
     setErr("nama_pemesan", !!(nama && nama.value.trim().length), "Wajib diisi");
-    setErr("wa_pemesan", /^08\\d{8,}$/.test(waVal), "Format WA harus diawali 08 dan minimal 10 digit");
-    setErr("email_pemesan", /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(emailVal), "Email tidak valid");
+    setErr("wa_pemesan", /^08\d{8,}$/.test(waVal), "Format WA harus diawali 08 dan minimal 10 digit");
+    setErr("email_pemesan", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal), "Email tidak valid");
     setErr("tgl_berangkat", !!(tglDate && tglDate.getTime() >= today.getTime()), "Tanggal tidak boleh masa lalu");
     setErr("jenis_visa", !!(jenis && jenis.value.trim().length), "Pilih jenis visa");
     var method = getActiveMethod();
     if (!method) {
       if (payError) payError.textContent = "Pilih metode pembayaran";
-      if (!firstErrorEl) firstErrorEl = document.querySelector(".pay-grid");
+      if (!firstErrorEl) firstErrorEl = document.querySelector(".vf-pay-grid");
     } else {
       if (payError) payError.textContent = "";
     }
@@ -518,7 +530,7 @@ document.addEventListener("DOMContentLoaded", function () {
           successBox.classList.add("show");
           scrollToEl(successBox);
         }
-        var msg = encodeURIComponent("Halo Al-Safar Travel, saya ingin konfirmasi pesanan dengan nomor referensi " + ref + ".");
+        var msg = encodeURIComponent("Halo Madinah Group Amanah, saya ingin konfirmasi pesanan dengan nomor referensi " + ref + ".");
         if (orderChat) orderChat.setAttribute("href", "https://wa.me/6281200000000?text=" + msg);
         spawnConfetti();
       }, 1200);
@@ -527,7 +539,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (orderAgain) {
     orderAgain.addEventListener("click", function () {
       resetForm();
-      scrollToEl(document.querySelector(".visa-header"));
+      scrollToEl(document.querySelector(".vf-header"));
     });
   }
 });
